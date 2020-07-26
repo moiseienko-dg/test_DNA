@@ -24,6 +24,11 @@ class AccountController extends Controller {
     $this->view->render('Main');
   }
 
+  public function logoutAction() {
+    unset($_SESSION['authorize']);
+    $this->view->location('/login');
+  }
+
 }
 
 

@@ -6,6 +6,7 @@ return [
 	],
   'authorize' => [
     'main',
+    'logout'
   ],
 ]
 

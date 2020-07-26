@@ -9,6 +9,10 @@
       'controller' => 'account',
       'action' => 'main',
     ],
+    'logout' => [
+      'controller' => 'account',
+      'action' => 'logout',
+    ],
   ];
 
  ?>

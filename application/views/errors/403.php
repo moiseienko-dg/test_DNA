@@ -3,13 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Доступ запрещен</title>
+        <title>Access is denied</title>
         <link href="/public/styles/errors.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
-            <p><b>Ошибка 403</b>. Доступ запрещен</p>
-            <p><a href="/login">Перейти на главную</a></p>
+            <p><b>Error 403</b>. Access is denied</p>
+            <p><a href="/login">Go to Login page</a></p>
         </div>
     </body>
 </html>
