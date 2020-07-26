@@ -7,6 +7,11 @@ use application\core\Controller;
 class AccountController extends Controller {
 
   public function loginAction() {
+    if (isset($_SESSION['authorize'])) {
+      if (!$this->model->checkLoginAttepmts()) {
+        $this->view->message('error', $this->model->error);
+      }
+    }
 		if (!empty($_POST)) {
 			if (!$this->model->validate(['login', 'password'], $_POST)) {
 				$this->view->message('error', $this->model->error);

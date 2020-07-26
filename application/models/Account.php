@@ -38,6 +38,9 @@ class Account extends Model {
 
   public function checkNamePassword($login, $password) {
     $user_info = $this->db->get_name($login);
+    if (!isset($_SESSION['authorize']['login_attepmts'])) {
+      $_SESSION['authorize']['login_attepmts'] = 0;
+    }
     if (empty($user_info)) {
       $this->error = 'This login doesn\'t exists';
       return false;
@@ -45,11 +48,41 @@ class Account extends Model {
     else {
       $user_info = explode(',', $user_info);
       if ($user_info[1] != $password) {
+        $_SESSION['authorize']['login_attepmts'] += 1;
         $this->error = 'This not your password';
         return false;
       }
     }
     return true;
+  }
+
+  public function checkLoginAttepmts() {
+    if ($_SESSION['authorize']['login_attepmts'] > 2) {
+      if (isset($_SESSION['authorize']['locked'])) {
+        if (!$this->checkTimeAttepmts()) {
+          return false;
+        }
+      }
+      else {
+        $_SESSION['authorize']['locked'] = time();
+        $this->error = 'Attempts Login exhausted. Wait for: 10 second';
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public function checkTimeAttepmts() {
+    $difference = time() - $_SESSION['authorize']['locked'];
+    if ($difference < 10) {
+      $this->error = 'Attempts Login exhausted. Wait for: ' .
+      strval(10 - $difference) . ' second';
+    }
+    else {
+      unset($_SESSION['authorize']['locked']);
+      unset($_SESSION['authorize']['login_attepmts']);
+      return true;
+    }
   }
 
   public function login($login) {

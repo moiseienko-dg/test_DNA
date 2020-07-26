@@ -1,2 +1,2 @@
-lol,passwordpassword
-lol2,2
+admin,superpassword
+admin2,hardpassword
