@@ -65,7 +65,7 @@ class Account extends Model {
       }
       else {
         $_SESSION['authorize']['locked'] = time();
-        $this->error = 'Attempts Login exhausted. Wait for: 10 second';
+        $this->error = 'Attempts Login exhausted. Wait for: 5 minutes';
         return false;
       }
     }
@@ -74,9 +74,11 @@ class Account extends Model {
 
   public function checkTimeAttepmts() {
     $difference = time() - $_SESSION['authorize']['locked'];
-    if ($difference < 10) {
+    if ($difference < 300) {
+      $minutes = intdiv(300-$difference, 60);
+      $seconds =  (300-$difference) %  60;
       $this->error = 'Attempts Login exhausted. Wait for: ' .
-      strval(10 - $difference) . ' second';
+      $minutes . 'm ' . $seconds . 's';
     }
     else {
       unset($_SESSION['authorize']['locked']);
