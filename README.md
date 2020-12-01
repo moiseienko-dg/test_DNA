@@ -20,3 +20,9 @@
 |       1       | right-aligned |             |                 |
 |       2       | centered      |             |                 |
 |       3       | are neat      |             |                 |
+
+---
+
+**Post-conditions:**
+1. Step-1
+2. Step-2
