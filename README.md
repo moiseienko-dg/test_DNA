@@ -1,5 +1,5 @@
 
-|      №        | Steps/Actions |  Test Data  | Expected Result |
+|      ID       | Steps/Actions |  Test Data  | Expected Result |
 | ------------- |:-------------:| :---------: | --------------: |
 | col 3 is      | right-aligned | $1600       |                 |
 | col 2 is      | centered      |   $12       |                 |
